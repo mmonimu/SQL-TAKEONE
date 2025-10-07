@@ -44,3 +44,38 @@ Estructura general de datos:
 * *Recursos:* material disponible en la plataforma.
 
 Esta base de datos busca conectar la información emocional (quizzes y resultados) con la acción (recursos y sesiones), generando insights valiosos para la toma de decisiones.
+
+4.  Listado de tablas
+
+| **Tabla**         | **Descripción**                                               | **Campo**      | **Abreviatura** | **Tipo de dato** | **Clave** |
+| ----------------- | ------------------------------------------------------------- | -------------- | --------------- | ---------------- | --------- |
+| **Usuarios**      | Guarda los datos básicos de cada usuaria.                     | id_usuario     | id_usr          | INT              | PK        |
+|                   |                                                               | nombre         | nom_usr         | VARCHAR(100)     |           |
+|                   |                                                               | correo         | mail_usr        | VARCHAR(100)     |           |
+|                   |                                                               | edad           | edad_usr        | INT              |           |
+|                   |                                                               | pais           | pais_usr        | VARCHAR(50)      |           |
+|                   |                                                               | fecha_registro | fch_reg         | DATE             |           |
+| **Profesionales** | Registra los coaches o facilitadoras asociadas.               | id_profesional | id_prof         | INT              | PK        |
+|                   |                                                               | nombre         | nom_prof        | VARCHAR(100)     |           |
+|                   |                                                               | especialidad   | esp_prof        | VARCHAR(100)     |           |
+|                   |                                                               | correo         | mail_prof       | VARCHAR(100)     |           |
+| **Tests**         | Define los quizzes disponibles.                               | id_test        | id_tst          | INT              | PK        |
+|                   |                                                               | nombre_test    | nom_tst         | VARCHAR(100)     |           |
+|                   |                                                               | descripcion    | desc_tst        | TEXT             |           |
+| **Respuestas**    | Almacena los resultados de cada usuaria.                      | id_respuesta   | id_resp         | INT              | PK        |
+|                   |                                                               | id_usuario     | id_usr          | INT              | FK        |
+|                   |                                                               | id_test        | id_tst          | INT              | FK        |
+|                   |                                                               | resultado      | res_resp        | VARCHAR(50)      |           |
+|                   |                                                               | fecha          | fch_resp        | DATE             |           |
+| **Sesiones**      | Guarda las sesiones agendadas entre usuarias y profesionales. | id_sesion      | id_ses          | INT              | PK        |
+|                   |                                                               | id_usuario     | id_usr          | INT              | FK        |
+|                   |                                                               | id_profesional | id_prof         | INT              | FK        |
+|                   |                                                               | fecha          | fch_ses         | DATETIME         |           |
+|                   |                                                               | tema           | tema_ses        | VARCHAR(100)     |           |
+|                   |                                                               | estado         | est_ses         | VARCHAR(50)      |           |
+| **Recursos**      | Material educativo disponible.                                | id_recurso     | id_rec          | INT              | PK        |
+|                   |                                                               | titulo         | tit_rec         | VARCHAR(100)     |           |
+|                   |                                                               | tipo           | tip_rec         | VARCHAR(50)      |           |
+|                   |                                                               | enlace         | url_rec         | VARCHAR(255)     |           |
+|                   |                                                               | categoria      | cat_rec         | VARCHAR(50)      |           |
+
