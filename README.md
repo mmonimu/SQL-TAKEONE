@@ -1,212 +1,149 @@
-# 🌸 Take One – Toolkit de Bienestar Femenino  
-**Autora:** Mónica Muñoz  
-**Curso:** Proyecto Final – SQL
+✨ Take One – Base de Datos SQL
 
----
+Proyecto Final – Curso SQL
+Autora: Mónica Muñoz
 
-## 🩷 Introducción
+📌 Descripción general
 
-El proyecto **Take One** consiste en el diseño de una base de datos relacional que organiza y centraliza la información de un *toolkit de bienestar femenino*.  
-Este toolkit ofrece quizzes de autoconocimiento, recursos educativos y sesiones personalizadas para acompañar a las usuarias en su proceso de regulación emocional, autoconfianza y crecimiento personal.
+Take One es un toolkit de bienestar emocional con perspectiva feminista que integra tests breves, ejercicios, recursos descargables, sesiones con profesionales y un sistema de mood tracking.
 
-### 🎯 Objetivo
-Estructurar la información de usuarias, profesionales, recursos y resultados de los quizzes, permitiendo:
-- Registrar y relacionar de manera eficiente los datos.
-- Analizar tendencias y comportamientos de las usuarias.
-- Facilitar la personalización de contenidos y sesiones.
-- Contar con una base sólida para futuras herramientas analíticas o dashboards.
+Este repositorio contiene el modelo de base de datos completo, sus scripts de creación, scripts de carga, vistas, funciones, triggers, stored procedures y tabla de hechos, diseñado para soportar el funcionamiento de Take One a nivel técnico y analítico.
 
----
+📁 Contenido del repositorio
+├── 01_takeone_schema.sql      # Script de creación de tablas + vistas + SP + triggers + funciones
+├── 02_takeone_inserts.sql     # Script de inserción de datos ejemplo
+└── README.md                  # Documentación completa del proyecto
+⚠️ Los archivos previos (takeone_munoz.sql, takeone_objects.sql, takeone_seed.sql) se mantienen como versiones antiguas, pero NO forman parte del entregable final.
 
-## ⚙️ Situación problemática
+🧠 1. Introducción
+La plataforma Take One busca acompañar a mujeres en temas como ansiedad, perfeccionismo, síndrome del impostor y agotamiento emocional mediante:
+* Tests breves
+* Recursos del toolkit
+* Sesiones con profesionales
+* Mood tracking
+* Suscripciones
 
-En el desarrollo de plataformas de bienestar, los datos suelen almacenarse en hojas de cálculo o documentos dispersos, lo que genera desorden, pérdida de información y dificultad para analizar patrones.  
-Esta falta de estructura impide identificar con precisión las necesidades emocionales más comunes, los recursos más utilizados o los temas más solicitados por las usuarias.
+Para sostener todas estas interacciones, se desarrolló una base de datos relacional robusta, escalable y preparada para análisis.
 
-Con la implementación de una **base de datos relacional**, Take One podrá:
-- Integrar toda la información en un solo entorno.  
-- Evitar duplicidades y mantener integridad referencial.  
-- Facilitar consultas analíticas y visualizaciones en tiempo real.  
-- Servir como base para sistemas de inteligencia de negocios o dashboards.
+Este repositorio incluye todo el ecosistema técnico necesario para que Take One funcione en producción.
 
----
+🎯 2. Objetivos del proyecto
+Objetivo general
+Diseñar e implementar una base de datos relacional que permita administrar, relacionar y analizar la información generada por Take One.
 
-## 💼 Modelo de negocio
+Objetivos específicos
+* Crear un esquema con más de 15 tablas, incluyendo transaccionales y una tabla de hechos.
+* Implementar vistas, triggers, funciones y stored procedures.
+* Insertar datos realistas para pruebas.
+* Permitir consultas que respondan a preguntas críticas del negocio:
+   * ¿Qué recursos funcionan mejor?
+   * ¿Cómo cambia el mood antes y después de usarlos?
+   * ¿Cuáles son los países y planes más activos?
+   * ¿Cuál es la evolución de ingresos?
 
-**Take One** funciona como un ecosistema digital de bienestar enfocado en mujeres.  
-A través de una plataforma web, las usuarias pueden:
+Integrarlo con herramientas de analítica como Excel y Power BI.
 
-- Registrarse y crear un perfil.  
-- Responder quizzes de autoconocimiento.  
-- Acceder a recursos (artículos, podcasts, meditaciones, herramientas descargables).  
-- Agendar sesiones con profesionales o facilitadoras.  
-- Recibir recomendaciones personalizadas según su perfil emocional.
+🚨 3. Situación problemática
+Antes de implementar esta base, Take One tendría los típicos problemas de operaciones con hojas de Excel:
+* Duplicidad de información
+* Datos sin relación
+* Imposibilidad de medir resultados o impacto emocional
+* Falta de trazabilidad para suscripciones, pagos y sesiones
+* Difícil escalabilidad
 
-### 📊 Estructura general de datos:
-- **Usuarios:** registran sus datos personales.  
-- **Tests:** contienen las preguntas y resultados posibles.  
-- **Respuestas:** guardan los resultados individuales.  
-- **Profesionales:** ofrecen sesiones y recursos.  
-- **Sesiones:** conectan usuarias con profesionales.  
-- **Recursos:** material disponible en la plataforma.
+Con este modelo relacional:
+* Se ordena todo en entidades limpias
+* Se puede medir impacto emocional
+* Se puede hacer seguimiento del uso real del toolkit
+* Es fácil escalar nuevas funcionalidades (comunidad, retos, etc.)
 
-Esta base de datos conecta la información emocional (quizzes y resultados) con la acción (recursos y sesiones), generando *insights* valiosos para la toma de decisiones.
+🏛️ 4. Modelo de negocio
+El modelo freemium de Take One incluye:
 
----
+👤 Usuarias
+Registro por canales como Instagram, TikTok y orgánico.
+🧪 Tests
+Cuestionarios breves sobre ansiedad, impostor y multipotencialidad.
+📚 Recursos del toolkit
+Ejercicios, artículos, videos, descargables y podcasts.
+🧑‍⚕️ Profesionales
+Psicólogas y coaches de distintas especialidades.
+📅 Sesiones
+Asesoría emocional en línea.
+💳 Suscripciones y pagos
+Planes Free, Básico y Premium.
+💙 Mood Tracking
+Evolución emocional día con día.
+📊 Interacciones (Fact table)
+Registra cuántos minutos usó la usuaria un recurso, cómo llegó y cómo cambió su mood.
 
-## 🧩 Diagrama Entidad–Relación (E–R)
+🗺️ 5. Diagrama E-R
+El archivo está como Flow Chart Final en los documentos del repositorio
 
-> Generado con [dbdiagram.io](https://dbdiagram.io)  
-> Script base: [`takeone_schema.sql`](sql/takeone_schema.sql)
+🗃️ 6. Scripts del proyecto
+📜 Script 1 — Esquema de la base de datos
+👉** Archivo: 01_takeone_schema.sql**
+Incluye:
+* Creación de la base de datos
+* 20 tablas
+* Relaciones y FK
+* Índices
+* 6 vistas
+* 2 funciones
+* 2 triggers
+* 2 stored procedures
 
-**Entidades principales:**
-- Usuarios  
-- Profesionales  
-- Tests  
-- Respuestas  
-- Sesiones  
-- Recursos  
+📜 Script 2 — Inserción de datos
+👉** Archivo: 02_takeone_inserts.sql**
+Incluye datos de ejemplo para:
+* Países
+* Usuarias
+* Profesionales
+* Tests y preguntas
+* Recursos
+* Categorías
+* Suscripciones
+* Sesssiones
+* Pagos
+* Mood tracking
+* Tabla de hechos: interacciones
 
-**Relaciones:**
-- Un usuario puede responder varios tests → (1:N)  
-- Un test puede tener muchas respuestas → (1:N)  
-- Un usuario puede tener muchas sesiones → (1:N)  
-- Un profesional puede impartir muchas sesiones → (1:N)
+📊 7. Informes e insights generados
+✔️ Uso del toolkit
+Mide qué recursos son más populares y cuántos minutos acumulan.
+Vista: vw_interacciones_por_recurso.
 
----
+✔️ Impacto emocional
+Comparación mood_pre vs mood_post.
+Insight: recursos breves → mayor mejora.
 
-## 🗂️ Listado de Tablas
+✔️ Usuarias por país y plan
+México es el mercado más fuerte para planes Premium.
 
-| **Tabla** | **Descripción** | **Campo** | **Abreviatura** | **Tipo de dato** | **Clave** |
-|------------|-----------------|------------|------------------|------------------|------------|
-| **Usuarios** | Datos de las usuarias registradas. | id_usuario | id_usr | INT | PK |
-|  |  | nombre | nom_usr | VARCHAR(100) |  |
-|  |  | correo | mail_usr | VARCHAR(100) |  |
-|  |  | edad | edad_usr | INT |  |
-|  |  | pais | pais_usr | VARCHAR(50) |  |
-|  |  | fecha_registro | fch_reg | DATE |  |
-| **Profesionales** | Coaches o facilitadoras asociadas. | id_profesional | id_prof | INT | PK |
-|  |  | nombre | nom_prof | VARCHAR(100) |  |
-|  |  | especialidad | esp_prof | VARCHAR(100) |  |
-|  |  | correo | mail_prof | VARCHAR(100) |  |
-| **Tests** | Quizzes de autoconocimiento. | id_test | id_tst | INT | PK |
-|  |  | nombre_test | nom_tst | VARCHAR(100) |  |
-|  |  | descripcion | desc_tst | TEXT |  |
-| **Respuestas** | Resultados individuales de las usuarias. | id_respuesta | id_resp | INT | PK |
-|  |  | id_usuario | id_usr | INT | FK |
-|  |  | id_test | id_tst | INT | FK |
-|  |  | resultado | res_resp | VARCHAR(50) |  |
-|  |  | fecha | fch_resp | DATE |  |
-| **Sesiones** | Sesiones entre usuarias y profesionales. | id_sesion | id_ses | INT | PK |
-|  |  | id_usuario | id_usr | INT | FK |
-|  |  | id_profesional | id_prof | INT | FK |
-|  |  | fecha | fch_ses | DATETIME |  |
-|  |  | tema | tema_ses | VARCHAR(100) |  |
-|  |  | estado | est_ses | VARCHAR(50) |  |
-| **Recursos** | Material educativo disponible. | id_recurso | id_rec | INT | PK |
-|  |  | titulo | tit_rec | VARCHAR(100) |  |
-|  |  | tipo | tip_rec | VARCHAR(50) |  |
-|  |  | enlace | url_rec | VARCHAR(255) |  |
-|  |  | categoria | cat_rec | VARCHAR(50) |  |
+✔️ Ingresos mensuales
+PayPal gana fuerza internacional; tarjeta domina local.
 
----
+✔️ Resumen por usuaria (SP)
+CALL sp_resumen_usuario(1);
+Devuelve:
+* Datos de usuaria
+* Interacciones
+* Sesiones
+* Pagos aplicados
 
-# 🚀 Entrega 2 — Contenidos añadidos
+🔧 8. Herramientas utilizadas
+* MySQL
+* MySQL Workbench
+* Mermaid (diagrama ER)
+* Excel / Power BI (informes)
+* GitHub (control de versiones)
 
-> Esta sección amplía la Entrega 1 con Vistas, Funciones, Stored Procedures, Triggers e inserción de datos.
+🏁 9. Conclusiones
+Este proyecto consolida Take One en una estructura técnica sólida y preparada para crecimiento:
+* Datos limpios, conectados y trazables
+* Una tabla de hechos para análisis avanzado
+* Objetos SQL que automatizan procesos
+* Informes que permiten tomar decisiones basadas en datos
+* Una estructura lista para futuras funciones como recomendaciones personalizadas, gamificación y análisis de cohortes
 
-## 📦 Archivos de esta entrega
-- **/sql/takeone_objects.sql** — Vistas, Funciones, Stored Procedures y Triggers.  
-- **/sql/takeone_seed.sql** — Inserción de datos y ejemplos de uso.  
-- **PDF:** `Entrega2_Muñoz.pdf` (incluye también la Entrega 1).
-
-### ▶️ Orden de ejecución
-1) Esquema + Tablas (Entrega 1)  
-2) `sql/takeone_objects.sql`  
-3) `sql/takeone_seed.sql`
-
----
-
-## 👁️ Vistas (Views)
-
-1. **v_usuarios_resumen**  
-   - **Objetivo:** mostrar resumen por usuaria (cantidad de respuestas y sesiones).  
-   - **Tablas:** `usuarios`, `respuestas`, `sesiones`.
-
-2. **v_agenda_sesiones**  
-   - **Objetivo:** agenda con fecha, tema, usuaria y profesional.  
-   - **Tablas:** `sesiones`, `usuarios`, `profesionales`.
-
-3. **v_respuestas_por_test**  
-   - **Objetivo:** distribución de resultados por test.  
-   - **Tablas:** `tests`, `respuestas`.
-
-4. **v_catalogo_recursos**  
-   - **Objetivo:** catálogo general de recursos (título, tipo, categoría, url).  
-   - **Tablas:** `recursos`.
-
-5. **v_sesiones_pendientes**  
-   - **Objetivo:** listar sesiones pendientes a futuro.  
-   - **Tablas:** `sesiones`, `usuarios`, `profesionales`.
-
----
-
-## 🧮 Funciones (Stored Functions)
-
-1. **fn_segmento_edad(p_edad INT)**  
-   - **Objetivo:** clasifica edad en *Joven / Adulto / Adulto_Mayor*.  
-   - **Uso:** segmentación para reportes.
-
-2. **fn_normaliza_estado_sesion(p_estado VARCHAR(50))**  
-   - **Objetivo:** estandariza estados a `pendiente`, `confirmada`, `cancelada`, `realizada`.  
-   - **Uso:** validación en triggers o vistas.
-
-3. **fn_categoria_desde_resultado(p_resultado VARCHAR(50))**  
-   - **Objetivo:** mapea resultado de quiz a categoría de recurso.  
-   - **Uso:** recomendaciones personalizadas.
-
----
-
-## 🛠️ Stored Procedures
-
-1. **sp_agendar_sesion(p_id_usuario, p_id_profesional, p_fecha, p_tema)**  
-   - **Objetivo:** crear una sesión en estado `pendiente` (valida fecha futura).  
-   - **Impacta:** `sesiones`.
-
-2. **sp_registrar_respuesta(p_id_usuario, p_id_test, p_resultado)**  
-   - **Objetivo:** registrar respuesta con fecha actual.  
-   - **Impacta:** `respuestas`.
-
-3. **sp_recomendar_recursos_por_ultima_respuesta(p_id_usuario)**  
-   - **Objetivo:** obtener recursos recomendados según la última respuesta del usuario.  
-   - **Impacta/lee:** `respuestas`, `recursos`.
-
----
-
-## ⚡ Triggers
-
-1. **trg_usuarios_bi_defaults** — *BEFORE INSERT ON usuarios*  
-   - **Función:** convierte `correo` a minúsculas y agrega `fecha_registro` si es `NULL`.
-
-2. **trg_sesiones_bi_validafecha** — *BEFORE INSERT ON sesiones*  
-   - **Función:** evita sesiones con fecha anterior a `NOW()`.
-
-3. **trg_sesiones_bu_normaliza_estado** — *BEFORE UPDATE ON sesiones*  
-   - **Función:** normaliza campo `estado` usando la función `fn_normaliza_estado_sesion`.
-
-4. **trg_respuestas_bi_setfecha** — *BEFORE INSERT ON respuestas*  
-   - **Función:** si `fecha` es `NULL`, asigna la fecha actual.
-
----
-
-## 🌱 Inserción de datos (Seed)
-
-**Archivo:** `sql/takeone_seed.sql`  
-Incluye usuarios, profesionales, tests, recursos, respuestas y llamadas a Stored Procedures.
-
-### 💾 Ejemplos de uso
-```sql
-CALL sp_agendar_sesion(1, 1, DATE_ADD(NOW(), INTERVAL 3 DAY), 'Sesión de ansiedad');
-CALL sp_registrar_respuesta(2, 2, 'Procrastinacion');
-CALL sp_recomendar_recursos_por_ultima_respuesta(1);
-SELECT * FROM v_usuarios_resumen;
+La arquitectura está lista para escalar Take One como producto real.
